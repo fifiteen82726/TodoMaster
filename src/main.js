@@ -17,7 +17,12 @@ module.exports = React.createClass({
           <Text>Item2</Text>
         </View>
         <View style={styles.largeItem}>
-          <Text>Item3</Text>
+          <View style={styles.item}>
+            <Text>Item3a</Text>
+          </View>
+          <View style={styles.item}>
+            <Text>Item3b</Text>
+          </View>
         </View>
       </View>
     )
@@ -29,7 +34,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     borderWidth: 3,
-    borderColor: 'green'
+    borderColor: 'green',
+    flexDirection: 'row'
   },
 
   item: {
