@@ -10,9 +10,15 @@ module.exports = React.createClass({
   render() {
     return(
       <View style={styles.container}>
-        <Text>
-          Todo
-        </Text>
+        <View style={styles.item}>
+          <Text>Item1</Text>
+        </View>
+        <View style={styles.item}>
+          <Text>Item2</Text>
+        </View>
+        <View style={styles.largeItem}>
+          <Text>Item3</Text>
+        </View>
       </View>
     )
   }
@@ -22,7 +28,19 @@ module.exports = React.createClass({
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center'
+    borderWidth: 3,
+    borderColor: 'green'
+  },
+
+  item: {
+    flex: 1,
+    borderWidth: 3,
+    borderColor: 'black'
+  },
+
+  largeItem: {
+    flex: 3,
+    borderWidth: 3,
+    borderColor: 'blue'
   }
 })
