@@ -3,7 +3,8 @@ import {
   AppRegistry,
   StyleSheet,
   Text,
-  View
+  View,
+  TextInput
 } from 'react-native';
 
 module.exports = React.createClass({
@@ -33,6 +34,7 @@ module.exports = React.createClass({
         <Text style={styles.header}>
           ToDoList
         </Text>
+        <TextInput style = {styles.inputbox} />
         {this.renderList(this.state.tasks)}
       </View>
     )
@@ -46,7 +48,7 @@ const styles = StyleSheet.create({
   },
   task: {
     height:60,
-    borderWidth:1,
+    borderBottomWidth:1,
     borderColor: 'black',
     justifyContent: 'center',
     alignItems: 'center'
@@ -56,5 +58,12 @@ const styles = StyleSheet.create({
     marginTop:40,
     textAlign: 'center',
     fontSize: 18
+  },
+  inputbox:{
+    height: 60,
+    borderWidth: 1,
+    borderRadius: 5,
+    borderColor: 'black',
+    textAlign: 'center'
   }
 })
