@@ -17,7 +17,7 @@ module.exports = React.createClass({
     return(
       tasks.map((task) => {
         return(
-          <View>
+          <View key={task} style={styles.task}>
             <Text>
               {task}
             </Text>
@@ -30,6 +30,9 @@ module.exports = React.createClass({
   render() {
     return(
       <View style={styles.container}>
+        <Text style={styles.header}>
+          ToDoList
+        </Text>
         {this.renderList(this.state.tasks)}
       </View>
     )
@@ -39,10 +42,19 @@ module.exports = React.createClass({
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    borderWidth: 3,
-    borderColor: 'green',
+    flex: 1
+  },
+  task: {
+    height:60,
+    borderWidth:1,
+    borderColor: 'black',
     justifyContent: 'center',
     alignItems: 'center'
+  },
+  header:{
+    margin:30,
+    marginTop:40,
+    textAlign: 'center',
+    fontSize: 18
   }
 })
