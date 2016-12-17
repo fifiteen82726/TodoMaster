@@ -13,12 +13,24 @@ module.exports = React.createClass({
     })
   },
 
+  renderList(tasks){
+    return(
+      tasks.map((task) => {
+        return(
+          <View>
+            <Text>
+              {task}
+            </Text>
+          </View>
+        )
+      })
+    )
+  },
+
   render() {
     return(
       <View style={styles.container}>
-        <View>
-          <Text>{this.state.tasks}</Text>
-        </View>
+        {this.renderList(this.state.tasks)}
       </View>
     )
   }
