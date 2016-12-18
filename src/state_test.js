@@ -36,7 +36,7 @@ module.exports = React.createClass({
         <TextInput
           style = {styles.inputbox}
           placeholder="Type task"
-          onChange={(text) => {
+          onChangeText={(text) => {
             this.setState({task: text});
             console.log(this.state.task);
           }}
