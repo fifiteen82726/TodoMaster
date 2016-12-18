@@ -10,10 +10,10 @@ import {
 module.exports = React.createClass({
   getInitialState(){
     return({
-      tasks: ['Take Course', "Clean house"]
+      tasks: ['Take Course', "Clean house"],
+      task: ''
     })
   },
-
   renderList(tasks){
     return(
       tasks.map((task) => {
@@ -27,14 +27,20 @@ module.exports = React.createClass({
       })
     )
   },
-
   render() {
     return(
       <View style={styles.container}>
         <Text style={styles.header}>
           ToDoList
         </Text>
-        <TextInput style = {styles.inputbox} />
+        <TextInput
+          style = {styles.inputbox}
+          placeholder="Type task"
+          onChange={(text) => {
+            this.setState({task: text});
+            console.log(this.state.task);
+          }}
+        />
         {this.renderList(this.state.tasks)}
       </View>
     )
