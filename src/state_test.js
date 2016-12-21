@@ -27,6 +27,12 @@ module.exports = React.createClass({
       })
     )
   },
+
+  addTask(){
+    let tasks = this.state.tasks.concat([this.state.task]);
+    this.setState({tasks: tasks});
+  },
+
   render() {
     return(
       <View style={styles.container}>
@@ -40,6 +46,7 @@ module.exports = React.createClass({
             this.setState({task: text});
             console.log(this.state.task);
           }}
+          onEndEditing={()=>this.addTask()}
         />
         {this.renderList(this.state.tasks)}
       </View>
