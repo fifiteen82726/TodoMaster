@@ -29,8 +29,14 @@ module.exports = React.createClass({
   },
 
   addTask(){
+    // 產生新的 array 會更新state 
     let tasks = this.state.tasks.concat([this.state.task]);
     this.setState({tasks: tasks});
+
+    // won't work
+    // let newTask = this.state.task;
+    // this.state.tasks.push(newTask);
+
   },
 
   render() {
