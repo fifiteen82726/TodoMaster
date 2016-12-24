@@ -12,6 +12,7 @@ module.exports = React.createClass({
   getInitialState(){
     return({
       tasks: ['Take Course', "Clean house"],
+      completeTasks:[],
       task: ''
     })
   },
@@ -35,13 +36,31 @@ module.exports = React.createClass({
       })
     )
   },
-
+  renderComplete(tasks){
+    return(
+      tasks.map((task) => {
+        return(
+          <View key={task} style={styles.task}>
+            <Text style={styles.completed}>
+              {task} - completed
+            </Text>
+          </View>
+        )
+      })
+    )
+  },
   completeTask(index){
     console.log('complete task', this.state.tasks[index]);
     let tasks = this.state.tasks;
     tasks = tasks.slice(0, index).concat(tasks.slice(index + 1));
-    console.log(tasks);
-    this.setState({tasks});
+
+    let completeTasks = this.state.completeTasks;
+    completeTasks = completeTasks.concat([this.state.tasks[index]]);
+    console.log(completeTasks);
+    this.setState({
+      tasks,
+      completeTasks
+    });
   },
 
   addTask(){
@@ -71,6 +90,7 @@ module.exports = React.createClass({
           onEndEditing={()=>this.addTask()}
         />
         {this.renderList(this.state.tasks)}
+        {this.renderComplete(this.state.completeTasks)}
       </View>
     )
   }
@@ -82,11 +102,13 @@ const styles = StyleSheet.create({
     flex: 1
   },
   task: {
+    flexDirection: 'row',
     height:60,
     borderBottomWidth:1,
     borderColor: 'black',
-    justifyContent: 'center',
-    alignItems: 'center'
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    padding: 20
   },
   header:{
     margin:30,
@@ -100,5 +122,9 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     borderColor: 'black',
     textAlign: 'center'
+  },
+  completed:{
+    color: 'red',
+    textDecorationLine: 'line-through'
   }
 })
