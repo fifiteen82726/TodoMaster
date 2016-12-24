@@ -5,13 +5,14 @@ import {
   Text,
   View,
   TextInput,
-  TouchableOpacity
+  TouchableOpacity,
+  ScrollView
 } from 'react-native';
 
 module.exports = React.createClass({
   getInitialState(){
     return({
-      tasks: ['Take Course', "Clean house"],
+      tasks: ['Take Course', "Clean house", '123123','asda3','asdjaisdjaid','a','b','c','d','e'],
       completedTasks:[],
       task: ''
     })
@@ -105,8 +106,10 @@ module.exports = React.createClass({
           }}
           onEndEditing={()=>this.addTask()}
         />
-        {this.renderList(this.state.tasks)}
-        {this.renderComplete(this.state.completedTasks)}
+        <ScrollView>
+          {this.renderList(this.state.tasks)}
+          {this.renderComplete(this.state.completedTasks)}
+        </ScrollView>
       </View>
     )
   }
