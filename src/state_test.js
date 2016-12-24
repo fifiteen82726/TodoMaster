@@ -12,7 +12,7 @@ module.exports = React.createClass({
   getInitialState(){
     return({
       tasks: ['Take Course', "Clean house"],
-      completeTasks:[],
+      completedTasks:[],
       task: ''
     })
   },
@@ -38,29 +38,46 @@ module.exports = React.createClass({
   },
   renderComplete(tasks){
     return(
-      tasks.map((task) => {
+      tasks.map((task, index) => {
         return(
           <View key={task} style={styles.task}>
             <Text style={styles.completed}>
               {task} - completed
             </Text>
+            <TouchableOpacity
+              onPress={() => this.deleteTask(index)}
+            >
+              <Text>
+                &#10005;
+              </Text>
+            </TouchableOpacity>
           </View>
         )
       })
     )
   },
+  deleteTask(index){
+    let completedTasks = this.state.completedTasks;
+    // console.log(index);
+    // console.log(completedTasks.slice(0,index));
+    completedTasks = completedTasks.slice(0, index).concat(completedTasks.slice(index+1));
+    this.setState({completedTasks});
+    // console.log(this.state.completedTasks);
+  },
+
   completeTask(index){
-    console.log('complete task', this.state.tasks[index]);
+    // console.log('complete task', this.state.tasks[index]);
     let tasks = this.state.tasks;
     tasks = tasks.slice(0, index).concat(tasks.slice(index + 1));
 
-    let completeTasks = this.state.completeTasks;
-    completeTasks = completeTasks.concat([this.state.tasks[index]]);
-    console.log(completeTasks);
+    let completedTasks = this.state.completedTasks;
+    completedTasks = completedTasks.concat([this.state.tasks[index]]);
+    // console.log(completedTasks);
     this.setState({
       tasks,
-      completeTasks
+      completedTasks
     });
+    // console.log(this.state.completedTasks);
   },
 
   addTask(){
@@ -71,7 +88,6 @@ module.exports = React.createClass({
     // won't work
     // let newTask = this.state.task;
     // this.state.tasks.push(newTask);
-
   },
 
   render() {
@@ -90,7 +106,7 @@ module.exports = React.createClass({
           onEndEditing={()=>this.addTask()}
         />
         {this.renderList(this.state.tasks)}
-        {this.renderComplete(this.state.completeTasks)}
+        {this.renderComplete(this.state.completedTasks)}
       </View>
     )
   }
