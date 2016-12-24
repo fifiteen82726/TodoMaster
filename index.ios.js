@@ -12,7 +12,7 @@ import {
   View
 } from 'react-native';
 
-import Main from './src/state_test.js';
+import Main from './src/storage_test.js';
 
 class TodoMaster extends Component {
   render() {
