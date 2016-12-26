@@ -6,7 +6,8 @@ import {
   View,
   TextInput,
   TouchableOpacity,
-  ScrollView
+  ScrollView,
+  AsyncStorage
 } from 'react-native';
 
 module.exports = React.createClass({
@@ -17,6 +18,27 @@ module.exports = React.createClass({
       task: ''
     })
   },
+  componentDidUpdate() {
+    this.setStorage();
+  },
+
+  componentWillMount(){
+    // It's promise fun
+    AsyncStorage.getItem('tasks')
+      .then((response) => {
+        this.setState({tasks: JSON.parse(response)})
+      });
+    AsyncStorage.getItem('completedTasks')
+      .then((response) => {
+        this.setState({completedTasks: JSON.parse(response)})
+      });
+  },
+
+  setStorage(){
+    AsyncStorage.setItem('tasks', JSON.stringify(this.state.tasks));
+    AsyncStorage.setItem('completedTasks', JSON.stringify(this.state.completedTasks));
+  },
+
   renderList(tasks){
     return(
       tasks.map((task, index) => {
@@ -63,6 +85,9 @@ module.exports = React.createClass({
     // console.log(completedTasks.slice(0,index));
     completedTasks = completedTasks.slice(0, index).concat(completedTasks.slice(index+1));
     this.setState({completedTasks});
+    this.setStorage();
+    // this.setStorage(this.state.completedTasks);
+    // this.setStorage(this.state.Tasks);
     // console.log(this.state.completedTasks);
   },
 
@@ -78,6 +103,9 @@ module.exports = React.createClass({
       tasks,
       completedTasks
     });
+    this.setStorage();
+    // this.setStorage(this.state.completedTasks);
+    // this.setStorage(this.state.Tasks);
     // console.log(this.state.completedTasks);
   },
 
@@ -85,6 +113,9 @@ module.exports = React.createClass({
     // 產生新的 array 會更新state
     let tasks = this.state.tasks.concat([this.state.task]);
     this.setState({tasks: tasks});
+    this.setStorage();
+    // this.setStorage(this.state.completedTasks);
+    // this.setStorage(this.state.Tasks);
 
     // won't work
     // let newTask = this.state.task;
