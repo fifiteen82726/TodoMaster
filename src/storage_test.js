@@ -85,7 +85,6 @@ module.exports = React.createClass({
     // console.log(completedTasks.slice(0,index));
     completedTasks = completedTasks.slice(0, index).concat(completedTasks.slice(index+1));
     this.setState({completedTasks});
-    this.setStorage();
     // this.setStorage(this.state.completedTasks);
     // this.setStorage(this.state.Tasks);
     // console.log(this.state.completedTasks);
@@ -103,7 +102,6 @@ module.exports = React.createClass({
       tasks,
       completedTasks
     });
-    this.setStorage();
     // this.setStorage(this.state.completedTasks);
     // this.setStorage(this.state.Tasks);
     // console.log(this.state.completedTasks);
@@ -113,7 +111,6 @@ module.exports = React.createClass({
     // 產生新的 array 會更新state
     let tasks = this.state.tasks.concat([this.state.task]);
     this.setState({tasks: tasks});
-    this.setStorage();
     // this.setStorage(this.state.completedTasks);
     // this.setStorage(this.state.Tasks);
 
